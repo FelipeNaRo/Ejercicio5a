@@ -1,19 +1,48 @@
 package com.example.dam2.ejercicio5a;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-    Button botonAA,botonAP;
+    Button botonAA,botonAP,botonBA,botonBP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        botonAA=(Button)findViewById(R.id.botonAA);
+        botonAP=(Button)findViewById(R.id.botonAP);
+        botonBA=(Button)findViewById(R.id.botonBA);
+        botonBP=(Button)findViewById(R.id.botonBP);
+
+        botonAA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recogerDatos(0);
+            }
+        });
+
+        botonAP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recogerDatos(1);
+            }
+        });
+    }
+
+    public void recogerDatos(int op){
+
+        Intent i= new Intent(getApplicationContext(),Main2Activity.class);
+        Bundle b= new Bundle();
+        b.putInt("opcion",op);
+        i.putExtras(b);
+        startActivity(i);
     }
 
     @Override
