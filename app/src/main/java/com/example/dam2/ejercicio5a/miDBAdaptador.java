@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
+/*
  * Created by 2dam on 09/12/2015.
  */
 public class miDBAdaptador {
@@ -33,8 +33,8 @@ public class miDBAdaptador {
     private static final String TITLE = "title";
     private static final String YEAR = "year";
 
-    private static final String DATABASE_CREATE1="CREATE TABLE"+DATABASE_TABLE1+" (_id integer primary key autoincrement, nombre text, edad integer, ciclo text, curso integer, nota integer); ";
-    private static final String DATABASE_CREATE2="CREATE TABLE"+DATABASE_TABLE2+" (_id integer primary key autoincrement, nombre text, edad integer, ciclo text, curso integer, despacho text); ";
+    private static final String DATABASE_CREATE1="CREATE TABLE IF NOT EXIST"+DATABASE_TABLE1+" (_id integer primary key autoincrement, nombre text, edad integer, ciclo text, curso integer, nota integer); ";
+    private static final String DATABASE_CREATE2="CREATE TABLE IF NOT EXIST"+DATABASE_TABLE2+" (_id integer primary key autoincrement, nombre text, edad integer, ciclo text, curso integer, despacho text); ";
     private static final String DATABASE_CREATE = "CREATE TABLE "+DATABASE_TABLE1+" (_id integer primary key autoincrement, title text, year integer);";
     private static final String DATABASE_DROP = "DROP TABLE IF EXISTS "+DATABASE_TABLE1+";";
     private static final String DATABASE_DROP1="DROP TABLE IF EXISTS "+DATABASE_TABLE1+";";
@@ -78,7 +78,7 @@ public class miDBAdaptador {
         nuevosValores.put(CICLO,ci);
         nuevosValores.put(CURSO,cu);
         nuevosValores.put(NOTA,not);
-        db.insert(DATABASE_TABLE1,null,nuevosValores);
+        db.insert(DATABASE_TABLE1, null, nuevosValores);
     }
 
     public void insertarProfesor(String n, int e, String ci, int cu, String d ){
