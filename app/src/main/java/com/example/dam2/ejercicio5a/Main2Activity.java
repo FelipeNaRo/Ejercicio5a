@@ -9,19 +9,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Main2Activity extends Activity {
 
     Button grabar,volver;
     EditText nombre,edad,ciclo,curso,nota;
     TextView opcional;
-    miDBAdaptador m;
+    private miDBAdaptador m;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         Bundle b=getIntent().getExtras();
-        int op=b.getInt("opcion");
+        m=new miDBAdaptador(this);
+        m.open();
+        final int op=b.getInt("opcion");
         opcional=(TextView)findViewById(R.id.opcional);
         switch (op){
             case 0: opcional.setText("Nota media");
@@ -46,8 +49,14 @@ public class Main2Activity extends Activity {
         grabar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                m.insertarAlumno(nombre.getText().toString(),Integer.parseInt(edad.getText().toString()),ciclo.getText().toString(),Integer.parseInt(curso.getText().toString()),Integer.parseInt(nota.getText().toString()));
-                Principal();
+                opcional.setText(nombre.getText().toString() + " < > " + edad.getText().toString() + " < > " + ciclo.getText().toString() + " < > " +curso.getText().toString()+" < > "+nota.getText().toString());
+                   try {
+                       m.insertarAlumno(nombre.getText().toString(), Integer.parseInt(edad.getText().toString()), ciclo.getText().toString(), Integer.parseInt(curso.getText().toString()), Integer.parseInt(nota.getText().toString()));
+                       opcional.setText("Güay");
+                   }catch(NullPointerException e){
+                       opcional.setText("Error");
+                   }
+                //Principal();
             }
         });
     }
