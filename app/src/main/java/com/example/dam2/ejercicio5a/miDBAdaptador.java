@@ -90,6 +90,28 @@ public class miDBAdaptador {
         nuevosValores.put(DESPACHO, d);
         db.insert(DATABASE_TABLE2, null, nuevosValores);
     }
+
+    public void borrarElemento(int op, int pos){
+        switch (op){
+            case 0:
+                if (pos!=0) {
+                    db.delete("alumnos", "_id=" + pos, null);
+                }
+                else {
+                    db.delete("alumnos", null, null);
+                }
+                break;
+            case 1:
+                if (pos!=0) {
+                    db.delete("profesores", "_id=" + pos, null);
+                }
+                else {
+                    db.delete("profesores", null, null);
+                }
+                break;
+
+                }
+    }
     private static class MyDbHelper extends SQLiteOpenHelper {
 
         public MyDbHelper (Context context, String name, SQLiteDatabase.CursorFactory factory, int version){

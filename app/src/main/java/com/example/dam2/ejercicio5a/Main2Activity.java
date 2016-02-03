@@ -49,18 +49,28 @@ public class Main2Activity extends Activity {
         grabar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                opcional.setText(nombre.getText().toString() + " < > " + edad.getText().toString() + " < > " + ciclo.getText().toString() + " < > " +curso.getText().toString()+" < > "+nota.getText().toString());
                    try {
-                       m.insertarAlumno(nombre.getText().toString(), Integer.parseInt(edad.getText().toString()), ciclo.getText().toString(), Integer.parseInt(curso.getText().toString()), Integer.parseInt(nota.getText().toString()));
-                       opcional.setText("Güay");
+                       switch (op){
+                           case 0:
+                               m.insertarAlumno(nombre.getText().toString(), Integer.parseInt(edad.getText().toString()), ciclo.getText().toString(), Integer.parseInt(curso.getText().toString()), Integer.parseInt(nota.getText().toString()));
+                               break;
+                           case 1:
+                               m.insertarProfesor(nombre.getText().toString(), Integer.parseInt(edad.getText().toString()), ciclo.getText().toString(), Integer.parseInt(curso.getText().toString()), nota.getText().toString());
+                               break;}
                    }catch(NullPointerException e){
                        opcional.setText("Error");
                    }
+                volver();
                 //Principal();
             }
         });
     }
     public void Principal(){
+        Intent i=new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(i);
+    }
+
+    public void volver(){
         Intent i=new Intent(getApplicationContext(),MainActivity.class);
         startActivity(i);
     }

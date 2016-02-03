@@ -34,6 +34,29 @@ public class MainActivity extends Activity {
                 recogerDatos(1);
             }
         });
+
+        botonBA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                borrarDatos(0);
+            }
+        });
+
+        botonBP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                borrarDatos(1);
+            }
+        });
+    }
+
+    private void borrarDatos(int op) {
+
+        Intent i=new Intent(getApplicationContext(),Main22Activity.class);
+        Bundle b= new Bundle();
+        b.putInt("opcion",op);
+        i.putExtras(b);
+        startActivity(i);
     }
 
     public void recogerDatos(int op){
