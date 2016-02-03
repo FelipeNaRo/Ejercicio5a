@@ -60,17 +60,12 @@ public class Main2Activity extends Activity {
                    }catch(NullPointerException e){
                        opcional.setText("Error");
                    }
-                volver();
+                Principal();
                 //Principal();
             }
         });
     }
     public void Principal(){
-        Intent i=new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(i);
-    }
-
-    public void volver(){
         Intent i=new Intent(getApplicationContext(),MainActivity.class);
         startActivity(i);
     }
